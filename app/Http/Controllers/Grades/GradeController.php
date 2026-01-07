@@ -1,8 +1,11 @@
 <?php 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Grades;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Grade;
+// use 
 
 class GradeController extends Controller 
 {
@@ -14,7 +17,8 @@ class GradeController extends Controller
    */
   public function index()
   {
-    
+     $Grades = Grade::all();
+     return response()->view('grades.grade', compact('Grades'));
   }
 
   /**
@@ -34,7 +38,18 @@ class GradeController extends Controller
    */
   public function store(Request $request)
   {
-    
+      $valid = $request->validate([
+        'Name' => 'required|string|max:255',
+      ]);
+
+      $GradeModel = new Grade();
+      $GradeModel->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
+      $GradeModel->Notes = ['en' => $request->Notes];
+      $GradeModel->save();
+      // Display a success toast with no title
+      flash()->success(trans('messages.success'));
+
+      return redirect()->route('Grade.index');
   }
 
   /**

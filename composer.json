@@ -9,10 +9,13 @@
         "php": "^8.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "mcamara/laravel-localization": "^2.3"
+        "mcamara/laravel-localization": "^2.3",
+        "spatie/laravel-translatable": "*",
+        "yoeunes/toastr": "^3.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "laravel/breeze": "^2.3",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
