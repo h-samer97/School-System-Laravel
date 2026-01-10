@@ -99,7 +99,7 @@
                                                             :</label>
                                                         <input id="Name" type="text" name="Name"
                                                             class="form-control"
-                                                            value=""
+                                                            value="{{ $Grade->getTranslation('Name', 'ar') }}"
                                                             required>
                                                         <input id="id" type="hidden" name="id" class="form-control"
                                                             value="{{ $Grade->id }}">
@@ -109,7 +109,7 @@
                                                             class="mr-sm-2">{{ trans('Grades_trans.stage_name_en') }}
                                                             :</label>
                                                         <input type="text" class="form-control"
-                                                            value=""
+                                                             value="{{ $Grade->getTranslation('Name', 'en') }}"
                                                             name="Name_en" required>
                                                     </div>
                                                 </div>
@@ -231,7 +231,7 @@
 
 <!-- row closed -->
 @endsection
-@section('js')
+<!-- @section('js') -->
 @toastr_js
 @toastr_render
 @endsection

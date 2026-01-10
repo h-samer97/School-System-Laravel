@@ -46,6 +46,7 @@ NOTE: This file contains all scripts for the actual Template.
  (function($){
   "use strict";
   var POTENZA = {};
+  var plugin_path = "/assets/js/";
 
   /*************************
   Predefined Variables
