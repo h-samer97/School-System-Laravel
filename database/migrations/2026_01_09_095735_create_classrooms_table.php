@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('classrooms', function (Blueprint $table) {
-        $table->increments('id'); // المفتاح الأساسي للصف
-        $table->unsignedInteger('grade_id'); // المفتاح الأجنبي
+        $table->increments('id');
+        $table->unsignedInteger('grade_id');
         $table->string('name_class');
         $table->timestamps();
 
