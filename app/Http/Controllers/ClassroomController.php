@@ -40,8 +40,8 @@ class ClassroomController extends Controller
         $Classrooms = Classroom::findOrFail($request->id);
 
         $Classrooms->update([
-            $Classrooms->name_class = ['ar' => $request->Name, 'en' => $request->Name_en];
-            $Classrooms->Grade_id = $request->Grade_id;
+            $Classrooms->name_class = ['ar' => $request->Name, 'en' => $request->Name_en],
+            $Classrooms->Grade_id = $request->Grade_id
         ]);
         toastr()->success(trans('messages.success'));
         return redirect()->route('Classroom.index');
@@ -52,5 +52,23 @@ class ClassroomController extends Controller
         $Classroom = Classroom::findOrFail($request->id)->delete();
         toastr()->success(trans('messages.Delete'));
         return redirect()->route('Classroom.index');
+    }
+
+    public function delete_all(Request $request) {
+        
+        $IDs = explode(',', $request->delete_all_id);
+
+        Classroom::whereIn('id', $IDs)->Delete();
+        toastr()->error(trans('messages.Delete'));
+        return redirect()->route('Classroom.index');
+        
+    }
+
+    public function Filter_Classes(Request $request)
+    {
+        $Grades = Grade::all();
+        $Search = Classroom::select('*')->where('Grade_id','=',$request->Grade_id)->get();
+        return view('classroom\my_classroom',compact('Grades'))->withDetails($Search);
+
     }
 }

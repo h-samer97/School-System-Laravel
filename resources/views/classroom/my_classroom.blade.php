@@ -30,16 +30,33 @@
                 </div>
             @endif
 
-            <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
+             <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                 {{ trans('My_Classes_trans.add_class') }}
             </button>
+
+                <button type="button" class="button x-small" id="btn_delete_all">
+                    {{ trans('My_Classes_trans.delete_checkbox') }}
+                </button>
             <br><br>
 
-            <div class="table-responsive">
-                <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
+            <form action="{{ route('Filter_Classes') }}" method="POST">
+                    {{ csrf_field() }}
+                    <select class="selectpicker" data-style="btn-info" name="Grade_id" required
+                            onchange="this.form.submit()">
+                        <option value="" selected disabled>{{ trans('My_Classes_trans.Search_By_Grade') }}</option>
+                        @foreach ($Grades as $Grade)
+                            <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
+                        @endforeach
+                    </select>
+                </form>
+
+                
+                <div class="table-responsive">
+                    <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
                     style="text-align: center">
                     <thead>
                         <tr>
+                            <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
                             <th>#</th>
                             <th>{{ trans('My_Classes_trans.Name_class_en') }}</th>
                             <th>{{ trans('My_Classes_trans.Name_Grade') }}</th>
@@ -47,23 +64,31 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (isset($details))
+        
+                               <?php $List_Classes = $details; ?>
+                           @else
+        
+                               <?php $List_Classes = $My_Classes; ?>
+                           @endif
                         <?php $i = 1 ?>
-                        @foreach ($My_Classes as $My_Class)
+                        @foreach ($List_Classes as $My_Class)
                             <tr>
+                                <td><input type="checkbox"  value="{{ $My_Class->id }}" class="box1" ></td>
                                 <td>{{ $i }}</td>
                                 <td>{{ $My_Class->name_class }}</td>
                                 <td>{{ $My_Class->Grades->Name }}</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                        data-target="#edit{{ $My_Class->id }}"
-                                        title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
+                                    data-target="#edit{{ $My_Class->id }}"
+                                    title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#delete{{ $My_Class->id }}"
-                                        title="{{ trans('Grades_trans.Delete') }}"><i
-                                            class="fa fa-trash"></i></button>
+                                    data-target="#delete{{ $My_Class->id }}"
+                                    title="{{ trans('Grades_trans.Delete') }}"><i
+                                    class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-
+                            
                             <!-- edit_modal_Grade -->
                             <div class="modal fade" id="edit{{ $My_Class->id }}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,6 +158,37 @@
                                             </form>
 
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal fade" id="delete_all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                                                {{ trans('My_Classes_trans.delete_class') }}
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <form action="{{ route('delete_all') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                {{ trans('My_Classes_trans.Warning_Grade') }}
+                                                <input class="text" type="hidden" id="delete_all_id" name="delete_all_id" value=''>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
+                                                <button type="submit" class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +264,7 @@
                                             <label for="Name"
                                                 class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                 :</label>
-                                            <input class="form-control" type="text" name="Name" />
+                                            <input class="form-control" type="text" name="Name_ar" />
                                         </div>
 
 
@@ -216,7 +272,7 @@
                                             <label for="Name"
                                                 class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
                                                 :</label>
-                                            <input class="form-control" type="text" name="Name_class_en" />
+                                            <input class="form-control" type="text" name="Name_en" />
                                         </div>
 
 

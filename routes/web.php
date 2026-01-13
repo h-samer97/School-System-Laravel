@@ -31,6 +31,11 @@ Route::group(
 	Route::resource('Grades', GradeController::class);
 	Route::resource('Classroom', ClassroomController::class);
 
+    
+
+	Route::post('delete_all', [ClassroomController::class, 'delete_all'])->name('delete_all');
+	Route::post('Filter_Classes', [ClassroomController::class, 'Filter_Classes'])->name('Filter_Classes');
+
 
 	Route::get('/', function () { return view('dashboard'); })->middleware(['auth', 'verified'])->name('dashboard');
 	Route::get('/grades_list', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('Grade.index');

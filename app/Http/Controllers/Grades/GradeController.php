@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Grades;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Grade;
@@ -128,18 +129,30 @@ class GradeController extends Controller
    */
   public function destroy(Request $request)
   {
+
+
+      $My_Classes = Classroom::where('grade_id', $request->id)->pluck('grade_id');
+
+      if($My_Classes->count() == 0) {
+
+          try {
+    
+              $Grades = Grade::findOrFail($request->id)->delete();
+              toastr()->error(trans('messages.success'));
+              return redirect()->route('Grade.index');
+    
+          } catch(Exception $error) {
+    
+            return redirect()->back()->withErrors(['error' => $error->getMessage()]);
+    
+        }
+      } else {
+
+        toastr()->error(trans('Grades_trans.delete_Grade_Error'));
+        return redirect()->route('Grades.index');
+
+      }
       
-      try {
-
-          $Grades = Grade::findOrFail($request->id)->delete();
-          toastr()->error(trans('messages.success'));
-          return redirect()->route('Grade.index');
-
-      } catch(Exception $error) {
-
-        return redirect()->back()->withErrors(['error' => $error->getMessage()]);
-
-    }
 
   }
   
