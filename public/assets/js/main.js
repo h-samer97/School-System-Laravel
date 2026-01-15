@@ -1,5 +1,6 @@
 // // Delete Check box All
 
+
 // document.addEventListener('DOMContentLoaded', function() {
 //     const btnDeleteAll = document.getElementById('btn_delete_all');
     
@@ -60,3 +61,45 @@
         }
 
     }
+
+    // Sections Model
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const gradeSelect = document.querySelector('select[name="Grade_id"]');
+    const classSelect = document.querySelector('select[name="Class_id"]');
+
+    if(gradeSelect) {
+
+        gradeSelect.addEventListener('change', () => {
+
+           let gradeID = Number(gradeSelect.value);
+           
+           if(gradeID) {
+                fetch('Classes/' + gradeID).then(response => {
+                    
+                    if(!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    return response.json();
+
+                }).then(
+                    data => {
+                        classSelect.innerHTML = '<option value="">اختر الصف...</option>';
+                        for (const [id, name] of Object.entries(data)) {
+                            let option = document.createElement('option');
+                            option.value = id;
+                            option.text = name;
+                            classSelect.appendChild(option);
+                        }
+                    }
+                ).catch(error => console.error('Error:', error));
+           }
+
+        });
+
+    }
+
+});

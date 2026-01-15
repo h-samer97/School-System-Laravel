@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('classrooms', function (Blueprint $table) {
+    Schema::create('sections', function (Blueprint $table) {
         $table->id(); 
-        $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete()->cascadeOnUpdate();
-        $table->string('name_class');
+        $table->string('name_section');
+        $table->integer('status')->default(1);
         $table->timestamps();
+
+        $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete()->cascadeOnUpdate();
+        $table->foreignId('class_id')->constrained('classrooms')->cascadeOnDelete()->cascadeOnUpdate();
     });
 }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('classrooms');
+        Schema::dropIfExists('sections');
     }
 };

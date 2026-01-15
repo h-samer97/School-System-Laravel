@@ -6,14 +6,14 @@ use Illuminate\Database\Schema\Blueprint;
 class CreateGradesTable extends Migration {
 
 	public function up()
-	{
-		Schema::create('Grades', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('Name');
-			$table->longText('Notes');
-		});
-	}
+{
+    Schema::create('grades', function(Blueprint $table) {
+        $table->id();
+        $table->string('Name');
+        $table->longText('Notes')->nullable();
+        $table->timestamps();
+    });
+}
 
 	public function down()
 	{
