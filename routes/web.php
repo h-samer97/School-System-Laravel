@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Grades\GradeController;
+use App\Livewire\AddParent;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -47,7 +48,7 @@ Route::group(
 	Route::get('/grades_list', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('Grade.index');
 	Route::get('Classes/{id}', [SectionController::class, 'getClasses']);
 
-	Route::get('add-parent', function() {
+	Route::get('add-parent', function () {
 		return view('parents.show-form');
 	});
 
