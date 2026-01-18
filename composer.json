@@ -9,6 +9,7 @@
         "php": "^8.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "livewire/livewire": "^4.0",
         "mcamara/laravel-localization": "^2.3",
         "spatie/laravel-translatable": "*",
         "yoeunes/toastr": "^3.3"

@@ -47,6 +47,10 @@ Route::group(
 	Route::get('/grades_list', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('Grade.index');
 	Route::get('Classes/{id}', [SectionController::class, 'getClasses']);
 
+	Route::get('add-parent', function() {
+		return view('parents.show-form');
+	});
+
 });
 
 

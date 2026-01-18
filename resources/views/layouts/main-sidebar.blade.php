@@ -53,7 +53,7 @@
                     </li>
                     <!-- menu item chat-->
                     <li>
-                        <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat
+                        <a href="{{ url('add-parent') }}"><i class="ti-comments"></i><span class="right-nav-text">Parents
                             </span></a>
                     </li>
                     <!-- menu item mailbox-->
