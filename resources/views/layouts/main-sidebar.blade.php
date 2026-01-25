@@ -49,7 +49,7 @@
                     </li>
                     <!-- menu item todo-->
                     <li>
-                        <a href="sections"><i class="ti-menu-alt"></i><span class="right-nav-text">Sections</span> </a>
+                        <a href="{{ url('sections') }}"><i class="ti-menu-alt"></i><span class="right-nav-text">Sections</span> </a>
                     </li>
                     <!-- menu item chat-->
                     <li>
@@ -58,8 +58,9 @@
                     </li>
                     <!-- menu item mailbox-->
                     <li>
-                        <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Mail
-                                box</span> <span class="badge badge-pill badge-warning float-right mt-1">HOT</span> </a>
+                        <a href="{{ url('teachers') }}"><span class="right-nav-text">
+                               Teachers
+                        </span></a>
                     </li>
                     <!-- menu item Charts-->
                     <li>

@@ -26,6 +26,7 @@
  preloader -->
 
         @include('layouts.main-header')
+    
 
         @include('layouts.main-sidebar')
 
@@ -35,6 +36,7 @@
         <div class="content-wrapper">
 
             @yield('page-header')
+
 
             @yield('content')
 

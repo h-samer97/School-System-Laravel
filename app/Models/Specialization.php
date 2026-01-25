@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class SParent extends Model
+class Specialization extends Model
 {
     use HasTranslations;
-    public $translatable = ['name_Father','job_father','name_mother','job_mother'];
-    protected $table = 's_parent';
+
+    protected $translatable = ['name'];
     protected $guarded = [];
 }

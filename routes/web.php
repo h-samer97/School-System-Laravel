@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Grades\GradeController;
 use App\Livewire\AddParent;
@@ -47,6 +48,12 @@ Route::group(
 	Route::get('/', function () { return view('dashboard'); })->middleware(['auth', 'verified'])->name('dashboard');
 	Route::get('/grades_list', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('Grade.index');
 	Route::get('Classes/{id}', [SectionController::class, 'getClasses']);
+	Route::get('teachers', [TeachersController::class, 'index'])->name('Teachers.index');
+	Route::get('teachers/create', [TeachersController::class, 'create'])->name('Teachers.create');
+	Route::post('teachers/store', [TeachersController::class, 'store'])->name('Teachers.store');
+	Route::get('teachers/edit{id}', [TeachersController::class, 'edit'])->name('Teachers.edit');
+	Route::patch('teachers/update{id}', [TeachersController::class, 'update'])->name('Teachers.update');
+	Route::delete('teachers/destroy', [TeachersController::class, 'destroy'])->name('Teachers.destroy');
 
 	Route::get('add-parent', function () {
 		return view('parents.show-form');

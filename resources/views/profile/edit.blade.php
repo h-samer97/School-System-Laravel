@@ -5,6 +5,14 @@
         </h2>
     </x-slot>
 
+
+        <div class="col-sm-6">
+            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="default-color">الرئيسية</a></li>
+                <li class="breadcrumb-item active">{{ trans('main_trans.Add_Parent') }}</li>
+            </ol>
+        </div>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
