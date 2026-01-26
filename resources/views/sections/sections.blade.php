@@ -340,7 +340,7 @@
                                                         disabled>{{ trans('Sections_trans.Select_Grade') }}
                                                 </option>
                                                 @foreach ($list_Grades as $list_Grade)
-                                                    <option value="{{ $list_Grade->id }}"> {{ $list_Grade->name }}
+                                                    <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }}
                                                     </option>
                                                 @endforeach
                                             </select>

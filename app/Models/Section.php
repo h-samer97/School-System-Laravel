@@ -19,7 +19,7 @@ class Section extends Model
 
     public function My_classs()
     {
-        return $this->belongsTo('App\Models\Classroom', 'Class_id');
+        return $this->belongsTo(Classroom::class, 'class_id');
     }
 
     public function teachers() {
