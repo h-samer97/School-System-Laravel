@@ -12,5 +12,13 @@ class Gender extends Model
 
     protected $translatable = ['name'];
     protected $fillable = ['name'];
+
+    public function gender() {
+        return $this->belongsTo(Gender::class, 'gender_id');
+    }
+
+    public function classrooms() {
+        return $this->belongsTo(Classroom::class, 'gender_id');
+    }
     
 }

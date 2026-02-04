@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PromotionsController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Grades\GradeController;
@@ -59,9 +61,23 @@ Route::group(
 		return view('parents.show-form');
 	});
 
-});
+	// ==================  Students =====================
 
+	Route::resource('students', StudentController::class);
+	Route::post('Upload_attachment', [StudentController::class, 'Upload_attachment'])->name('Upload_attachment');
+	Route::get('Delete_attachment', [StudentController::class, 'Delete_attachment'])->name('Delete_attachment');
+	Route::get('Download_attachment', [StudentController::class, 'Download_attachment'])->name('Download_attachment');
 
+	// ================= Promotions Students ====================================
+	Route::resource('promotions', PromotionsController::class);
+	
+	});
+	
+	
+	Route::get('/Get_classrooms/{id}', [StudentController::class, 'Get_classrooms']);
+	Route::get('/Get_Sections/{id}', [StudentController::class, 'Get_Sections']);
+
+	Route::get('/getClassroomsInPormotions/{id}', [PromotionsController::class, 'getClassroomsInPormotions']);
 
 
 

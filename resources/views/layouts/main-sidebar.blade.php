@@ -113,9 +113,10 @@
                         </a>
 
                         <ul id="font-icon" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="fontawesome-icon.html">font Awesome</a></li>
-                            <li><a href="themify-icons.html">Themify icons</a></li>
-                            <li><a href="weather-icon.html">Weather icons</a></li>
+                            <li><a href="{{ route('students.index') }}">List students</a></li>
+                            <li><a href="{{ route('students.create') }}">Add Students</a></li>
+                            <li><a href="{{ route('promotions.index') }}">Promotions Students</a></li>
+                            <li><a href="{{ route('promotions.create') }}">Students Managment</a></li>
                         </ul>
                     </li>
                     <!-- End Students Section -->

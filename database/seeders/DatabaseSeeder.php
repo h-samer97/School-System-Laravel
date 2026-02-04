@@ -17,11 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       $this->call(BloodTableSeeder::class);
-       $this->call(NationalitiesTableSeeder::class);
-       $this->call(ReligionTableSeeder::class);
-       $this->call(Specialization::class);
-       $this->call(Gender::class);
-       $this->call(Specialization::class);
+       $this->call([
+            BloodTableSeeder::class,
+            NationalitiesTableSeeder::class,
+            ReligionTableSeeder::class,
+            Gender::class,
+            Specialization::class,
+
+            GradeSeeder::class,
+            ClassroomsSeeder::class,
+            SectionsSeeder::class,
+
+            ParentsSeeder::class,
+            TeachersSeeder::class,
+            TeachersSectionsSeeder::class,
+
+            Students::class,
+]);
+
     }
 }

@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Yoeunes\Toastr\ToastrServiceProvider::class,
         Flasher\Toastr\Laravel\FlasherToastrServiceProvider::class,
+        App\Providers\StudentsServiceProvider::class,
+        App\Providers\PromotionServiceProvider::class,
 
 
         /*
