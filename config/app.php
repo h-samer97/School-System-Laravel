@@ -164,7 +164,19 @@ return [
         // Yoeunes\Toastr\ToastrServiceProvider::class,
         Flasher\Toastr\Laravel\FlasherToastrServiceProvider::class,
         App\Providers\StudentsServiceProvider::class,
+        App\Providers\StudentsAccountsServiceProvider::class,
         App\Providers\PromotionServiceProvider::class,
+        App\Providers\FeesServiceProvider::class,
+        App\Providers\GraduatedServiceProvider::class,
+        App\Providers\ReceiptStudentsServiceProvider::class,
+        App\Providers\ProcessingFees::class,
+        App\Providers\Payment::class,
+        App\Providers\Attendance::class,
+        App\Providers\Subject::class,
+        App\Providers\ExamServiceProvider::class,
+        App\Providers\Quizze::class,
+        App\Providers\QuestionServiceProvider::class,
+
 
 
         /*

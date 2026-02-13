@@ -2,8 +2,22 @@
 
 return [
     App\Providers\AppServiceProvider::class,
+    App\Providers\Attendance::class,
+    App\Providers\ExamServiceProvider::class,
+    App\Providers\FeesInvoicesServiceProvider::class,
+    App\Providers\FeesServiceProvider::class,
+    App\Providers\FundAccounts::class,
+    App\Providers\Graduated::class,
+    App\Providers\GraduatedServiceProvider::class,
+    App\Providers\Payment::class,
+    App\Providers\ProcessingFees::class,
     App\Providers\Promotion::class,
     App\Providers\PromotionServiceProvider::class,
+    App\Providers\QuestionServiceProvider::class,
+    App\Providers\Quizze::class,
+    App\Providers\ReceiptStudentsServiceProvider::class,
     App\Providers\Students::class,
+    App\Providers\StudentsAccountsServiceProvider::class,
+    App\Providers\Subject::class,
     App\Providers\TeacherServiceProvider::class,
 ];

@@ -263,8 +263,7 @@ async function dynamicLoader(triggerSelector, targetSelector, apiUrl) {
 
         trigger.addEventListener('change', async function () {
             const id = this.value;
-
-            // تنظيف القائمة التابعة فوراً
+            
             target.innerHTML = '<option value="">جاري التحميل...</option>';
 
             if (!id) {

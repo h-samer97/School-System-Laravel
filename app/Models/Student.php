@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Student extends Model
 {
     use HasTranslations;
+    use SoftDeletes;
     protected $translatable = ['name'];
     protected $guarded = [];
 
@@ -40,5 +42,16 @@ class Student extends Model
 
     public function images () {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function student_account()
+    {
+        return $this->hasMany(StudentsAccounts::class, 'student_id');
+
+    }
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class, 'student_id');
     }
 }

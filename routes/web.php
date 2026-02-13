@@ -1,14 +1,23 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\FeesController;
+use App\Http\Controllers\FeesInvoiceController;
+use App\Http\Controllers\GraduatedController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\ReceiptStudentsController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StudentsAccountsController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Grades\GradeController;
-use App\Livewire\AddParent;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,7 +59,7 @@ Route::group(
 	Route::get('/', function () { return view('dashboard'); })->middleware(['auth', 'verified'])->name('dashboard');
 	Route::get('/grades_list', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('Grade.index');
 	Route::get('Classes/{id}', [SectionController::class, 'getClasses']);
-	Route::get('teachers', [TeachersController::class, 'index'])->name('Teachers.index');
+	Route::get('teachers', [TeachersController::class, 'index'])->name('teachers');
 	Route::get('teachers/create', [TeachersController::class, 'create'])->name('Teachers.create');
 	Route::post('teachers/store', [TeachersController::class, 'store'])->name('Teachers.store');
 	Route::get('teachers/edit{id}', [TeachersController::class, 'edit'])->name('Teachers.edit');
@@ -70,6 +79,20 @@ Route::group(
 
 	// ================= Promotions Students ====================================
 	Route::resource('promotions', PromotionsController::class);
+	// ================= Graduated Students ====================================
+
+	Route::resource('Graduated', GraduatedController::class);
+	Route::resource('Fees', FeesController::class);
+	Route::resource('fees_invoices', FeesInvoiceController::class);
+	Route::resource('students_accounts', StudentsAccountsController::class);
+	Route::resource('receipt_students', ReceiptStudentsController::class);
+	Route::resource('ProcessingFee', ProfileController::class);
+	Route::resource('Payment_students', PaymentController::class);
+	Route::resource('Attendance', AttendanceController::class);
+	Route::resource('subjects', SubjectController::class);
+	  Route::resource('Exams', 'ExamController');
+	    Route::resource('Quizzes', 'QuizzController');
+		Route::resource('questions', 'QuestionController');
 	
 	});
 	
@@ -77,7 +100,6 @@ Route::group(
 	Route::get('/Get_classrooms/{id}', [StudentController::class, 'Get_classrooms']);
 	Route::get('/Get_Sections/{id}', [StudentController::class, 'Get_Sections']);
 
-	Route::get('/getClassroomsInPormotions/{id}', [PromotionsController::class, 'getClassroomsInPormotions']);
 
 
 
