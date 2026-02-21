@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Http\Controllers\Grades;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
@@ -52,12 +52,12 @@ class GradeController extends Controller
         // Display a success toast with no title
         flash()->success(trans('messages.success'));
 
-        return redirect()->route('Grade.index');
+        return redirect()->route('Grades.index');
 
       } catch(Exception $error) {
 
           flash()->error('Error ' . $error);
-          return redirect()->route('Grade.index');
+          return redirect()->route('Grades.index');
 
       }
   }
@@ -96,7 +96,7 @@ class GradeController extends Controller
     $Grades = Grade::where('Name->ar', $request->Name)->orWhere('Name->en', $request->Name_en)->exists();
 
     if($Grades) {
-        return redirect()->route('Grade.index')->withErrors([trans('Grades_trans.exists')]);
+        return redirect()->route('Grades.index')->withErrors([trans('Grades_trans.exists')]);
     }
     
     try {
@@ -111,7 +111,7 @@ class GradeController extends Controller
         $Grade->Notes = $request->Notes
       ]);
       flash()->success(trans('messages.success'));
-      return redirect()->route('Grade.index');
+      return redirect()->route('Grades.index');
 
     } catch(Exception $error) {
 
@@ -139,7 +139,7 @@ class GradeController extends Controller
     
               $Grades = Grade::findOrFail($request->id)->delete();
               toastr()->error(trans('messages.success'));
-              return redirect()->route('Grade.index');
+              return redirect()->route('Grades.index');
     
           } catch(Exception $error) {
     

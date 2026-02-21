@@ -2,33 +2,33 @@
 
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     const btnDeleteAll = document.getElementById('btn_delete_all');
+document.addEventListener('DOMContentLoaded', function() {
+    const btnDeleteAll = document.getElementById('btn_delete_all');
     
-//     if (btnDeleteAll) {
-//         btnDeleteAll.addEventListener('click', function() {
-//             const checkboxes = document.querySelectorAll('#datatable input[type=checkbox]:checked');
-//             const selected = [];
+    if (btnDeleteAll) {
+        btnDeleteAll.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('#datatable input[type=checkbox]:checked');
+            const selected = [];
             
-//             checkboxes.forEach(function(checkbox) {
-//                 selected.push(checkbox.value);
-//             });
+            checkboxes.forEach(function(checkbox) {
+                selected.push(checkbox.value);
+            });
             
-//             if (selected.length > 0) {
-//                 const deleteAllModal = document.getElementById('delete_all');
-//                 const deleteAllIdInput = document.querySelector('input[id="delete_all_id"]');
+            if (selected.length > 0) {
+                const deleteAllModal = document.getElementById('delete_all');
+                const deleteAllIdInput = document.querySelector('input[id="delete_all_id"]');
                 
-//                 if (deleteAllModal && deleteAllIdInput) {
+                if (deleteAllModal && deleteAllIdInput) {
                    
-//                     deleteAllModal.style.display = 'block';
-//                     deleteAllModal.classList.add('show');
+                    deleteAllModal.style.display = 'block';
+                    deleteAllModal.classList.add('show');
                     
-//                     deleteAllIdInput.value = selected.join(',');
-//                 }
-//             }
-//         });
-//     }
-// });
+                    deleteAllIdInput.value = selected.join(',');
+                }
+            }
+        });
+    }
+});
 
 
 

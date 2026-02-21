@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,7 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
             'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         ]);
-    })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
+    })->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->render(function (Authenticatable $e, $request) {
+            
+            return redirect()->route('selection');
+        });
     })->create();

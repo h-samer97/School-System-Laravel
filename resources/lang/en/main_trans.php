@@ -33,7 +33,10 @@ return [
     'Settings'=>'Settings',
     'Users'=>'Users',
     'Copyright' => 'Copyright',
-    'Name_Programer' => 'SamirGamal MoraSoft All Rights Reserved'
+    'Name_Programer' => 'Samer Hajara => github/h.samer97',
+    'add_Promotion'=>'Add Promotion',
+    'list_Promotions'=>'List Promotion',
+    'list_Graduate' => 'list Graduate',
 
 
 ];

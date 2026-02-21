@@ -122,7 +122,7 @@
                                                                                 <div class="modal-body">
 
                                                                                     <form
-                                                                                        action="{{ route('Sections.update', 'test') }}"
+                                                                                        action="{{ route('Section.update', 'test') }}"
                                                                                         method="POST">
                                                                                         {{ method_field('patch') }}
                                                                                         {{ csrf_field() }}
@@ -159,12 +159,12 @@
                                                                                                 <!--placeholder-->
                                                                                                 <option
                                                                                                     value="{{ $Grade->id }}">
-                                                                                                    {{ $Grade->name }}
+                                                                                                    {{ $Grade->Name }}
                                                                                                 </option>
                                                                                                 @foreach ($list_Grades as $list_Grade)
                                                                                                     <option
                                                                                                         value="{{ $list_Grade->id }}">
-                                                                                                        {{ $list_Grade->name }}
+                                                                                                        {{ $list_Grade->Name }}
                                                                                                     </option>
                                                                                                 @endforeach
                                                                                             </select>
@@ -174,7 +174,7 @@
                                                                                         <div class="col">
                                                                                             <label for="inputName"
                                                                                                    class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                                                                                            <select name="Class_id"
+                                                                                            <select name="Classroom_id"
                                                                                                     class="custom-select">
                                                                                                 <option
                                                                                                     value="{{ $list_Sections->My_classs->id }}">
@@ -258,7 +258,7 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
                                                                                     <form
-                                                                                        action="{{ route('Sections.destroy', 'test') }}"
+                                                                                        action="{{ route('Section.destroy', 'test') }}"
                                                                                         method="post">
                                                                                         {{ method_field('Delete') }}
                                                                                         @csrf
@@ -313,7 +313,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action="{{ route('Sections.store') }}" method="POST">
+                                    <form action="{{ route('Section.store') }}" method="POST">
                                         {{ csrf_field() }}
                                         <div class="row">
                                             <div class="col">
@@ -340,7 +340,7 @@
                                                         disabled>{{ trans('Sections_trans.Select_Grade') }}
                                                 </option>
                                                 @foreach ($list_Grades as $list_Grade)
-                                                    <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }}
+                                                    <option value="{{ $list_Grade->id }}"> {{ $list_Grade->getTranslation('Name', app()->getLocale()) ?: $list_Grade->getTranslation('Name', 'en') }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -350,7 +350,7 @@
                                         <div class="col">
                                             <label for="inputName"
                                                    class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                                            <select name="Class_id" class="custom-select">
+                                            <select name="Classroom_id" class="custom-select">
 
                                             </select>
                                         </div><br>

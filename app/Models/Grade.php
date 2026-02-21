@@ -11,7 +11,7 @@ class Grade extends Model
 
     use HasTranslations;
     protected $table = 'Grades';
-    public array $translatable = ['Name', 'Notes'];
+    protected $translatable = ['Name', 'Notes'];
     protected $fillable = ['Name', 'Notes'];
     public $timestamps = true;
 

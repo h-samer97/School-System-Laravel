@@ -120,7 +120,7 @@
                                     <select class="custom-select mr-sm-2" name="Grade_id">
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                         @foreach($data['Grades'] as $Grade)
-                                            <option value="{{ $Grade->id }}" {{$Grade->id == $Students->grade_id ? 'selected' : ""}}>{{ $Grade->name }}</option>
+                                            <option value="{{ $Grade->id }}" {{$Grade->id == $Students->grade_id ? 'selected' : ""}}>{{ $Grade->Name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -211,29 +211,5 @@
     </script>
 
 
-    <script>
-        $(document).ready(function () {
-            $('select[name="Classroom_id"]').on('change', function () {
-                var Classroom_id = $(this).val();
-                if (Classroom_id) {
-                    $.ajax({
-                        url: "{{ URL::to('Get_Sections') }}/" + Classroom_id,
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            $('select[name="section_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
-                            });
-
-                        },
-                    });
-                }
-
-                else {
-                    console.log('AJAX load did not work');
-                }
-            });
-        });
-    </script>
+   
 @endsection

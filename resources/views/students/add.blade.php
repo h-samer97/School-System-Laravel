@@ -117,7 +117,7 @@
                                     <select class="custom-select mr-sm-2" name="Grade_id">
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                         @foreach($my_classes as $c)
-                                            <option  value="{{ $c->id }}">{{ $c->name }}</option>
+                                            <option  value="{{ $c->id }}">{{ $c->Name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

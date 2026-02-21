@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
             ParentsSeeder::class,
             TeachersSeeder::class,
             TeachersSectionsSeeder::class,
-
             Students::class,
+            SettingsTableSeeder::class
 ]);
 
     }

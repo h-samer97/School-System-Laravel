@@ -27,14 +27,14 @@ class StudentController extends Controller
         return $this->student->Edit_Student($id);
     }
     // Update Form
-    public function update(StoreStudent $request) {
+    public function update(Request $request) {
 
-        $this->student->Update_Student($request);
+       return $this->student->Update_Student($request);
 
     }
 
     public function destroy($id) {
-        $this->student->Delete_Student($id);
+        return $this->student->Delete_Student($id);
     }
 
     public function create() {

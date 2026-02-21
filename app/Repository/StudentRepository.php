@@ -29,9 +29,9 @@
 
         }
 
-        public function Delete_Student($request) {
+        public function Delete_Student($id) {
 
-            Student::findOrFail($request->id)->delete();
+            Student::findOrFail($id)->delete();
 
 
             toastr()->success(trans('Students_trans.delete'));
@@ -42,7 +42,7 @@
 
         public function Update_Student($request) {
 
-            $validate = $request->validate();
+            // $validate = $request->validate();
 
              try {
                     $Edit_Students = Student::findorfail($request->id);
@@ -64,7 +64,7 @@
                     $Edit_Students->academic_year = $request->academic_year;
                     $Edit_Students->save();
                     toastr()->success(trans('messages.Update'));
-                    return redirect()->route('Students.index');
+                    return redirect()->route('students.index');
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => $e->getMessage()]);
             }
