@@ -177,7 +177,7 @@
                                                                                             <select name="Classroom_id"
                                                                                                     class="custom-select">
                                                                                                 <option
-                                                                                                    value="{{ $list_Sections->My_classs->id }}">
+                                                                                                    value="{{ $list_Sections->My_classs->class_id }}">
                                                                                                     {{ $list_Sections->My_classs->name_class }}
                                                                                                 </option>
                                                                                             </select>
@@ -258,7 +258,7 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
                                                                                     <form
-                                                                                        action="{{ route('Section.destroy', 'test') }}"
+                                                                                        action="{{ route('Section.destroy', $list_Sections->id) }}"
                                                                                         method="post">
                                                                                         {{ method_field('Delete') }}
                                                                                         @csrf

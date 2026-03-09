@@ -8,7 +8,7 @@
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-اضافة فاتورة جديدة {{$student->name}}
+اضافة فاتورة جديدة {{$student->getTranslation('name', app()->getLocale())}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                        <form class=" row mb-30" action="{{ route('fees_invoices.store') }}" method="POST">
+                        <form class=" row mb-30" action="{{ route('Fees_Invoices.store') }}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="repeater">

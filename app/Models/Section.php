@@ -19,14 +19,14 @@ class Section extends Model
 
     public function My_classs()
     {
-        return $this->belongsTo(Classroom::class, 'class_id');
+        return $this->belongsTo(Classroom::class, 'id');
     }
 
     public function teachers()
 {
     return $this->belongsToMany(
         Teachers::class,      // الموديل المرتبط
-        'teacher__sections', // اسم الجدول الوسيط (بشرطتين كما كتبته)
+        'teacher__sections', // اسم الجدول الوسيط
         'section_id',        // المفتاح الأجنبي للموديل الحالي
         'teacher_id'         // المفتاح الأجنبي للموديل المرتبط (هذا هو سبب الخطأ)
     );

@@ -45,7 +45,7 @@ return [
 
         'students_attachments' => [
             'driver' => 'local',
-            'root' => storage_path('app/students_attachments'),
+            'root' => storage_path('students_attachments'),
         ],
 
         'public' => [

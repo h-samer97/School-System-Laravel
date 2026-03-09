@@ -12,10 +12,10 @@
     use App\Models\Student;
     use App\Models\TypeBlood;
     use DB;
-    use Dom\ParentNode;
-    use Flasher\Prime\Storage\Storage;
+    use Exception;
+    use Illuminate\Support\Facades;
     use Hash;
-    use Request;
+    use Illuminate\Support\Facades\Storage;
 
 
 
@@ -71,20 +71,41 @@
 
         }
 
-        public function Download_attachment($studentsname, $filename) {
-             return response()->download(public_path('attachments/students/'.$studentsname.'/'.$filename));
+       public function Download_attachment($studentsname, $filename) {
+
+            $path = $studentsname . '/' . $filename;
+
+            if (Storage::disk('students_attachments')->exists($path)) {
+                return Storage::disk('students_attachments')->download($path);
+            }
+
+            abort(404, 'File not found on server');
         }
 
         public function Delete_attachment($request)
-    {
-        // Delete img in server disk
-        \Illuminate\Support\Facades\Storage::disk('upload_attachments')->delete('attachments/students/'.$request->student_name.'/'.$request->filename);
+        {
+           $file = $request->student_name . '/' . $request->filename;
 
-        // Delete in data
-        Image::where('id',$request->id)->where('filename',$request->filename)->delete();
-        toastr()->error(trans('messages.Delete'));
-        return redirect()->route('Students.show',$request->student_id);
-    }
+            try {
+
+                if(Storage::disk('students_attachments')->exists($file)) {
+
+                    Storage::disk('students_attachments')->delete($file);
+
+                }
+                # Delete From DB => Image
+
+                Image::where('imageable_id', $request->student_id)->delete();
+                toastr()->error(trans('Students_trans.Delete_attachment'));
+                return redirect()->back();
+
+            } catch (Exception $error) {
+
+                return redirect()->back()->withErrors(['error' => $error->getMessage()]);
+
+            }
+
+        }
 
 
 
@@ -92,22 +113,20 @@
 
             foreach($request->file('photos') as $file) {
 
-                $fileName = $file->getClientOriginalName();
+                $originalName = $file->getClientOriginalName();
+                
+                $finalName = time() . '_' . $originalName;
 
-                $file->storeAs('app\students_attachments' .$request->student_name, $fileName, 'students_attachments');
+                $file->storeAs($request->student_name, $finalName, 'students_attachments');
 
                 $Image = new Image();
-                $Image->filename = $fileName;
+                $Image->filename = $finalName;
                 $Image->imageable_id = $request->student_id;
-
                 $Image->imageable_type = 'App\Models\Student';
                 $Image->save();
-
             }
-
             toastr()->success(trans('messages.success'));
-            return redirect()->route('students.show',$request->student_id);
-
+            return redirect()->route('students.show', $request->student_id);
         }
 
         public function Edit_Student($id) {
@@ -180,14 +199,14 @@
 
                 foreach($request['photos'] as $photo) {
 
-                    $nameFile = $photo->getClientOriginalName();
+                    $finalName = time() . '_' . $photo->getClientOriginalName();
 
-                    $photo->storeAs('attachments/students/', $nameFile, 'students_attachments');
+                    $photo->storeAs($request->student_name, $finalName, 'students_attachments');
 
                     $Image = new Image();
-                    $Image->filename = $nameFile;
-                    $Image->imageable_id= $students->id;
-                    $Image->imageable_type = 'App\Model\Student';
+                    $Image->filename = $finalName;
+                    $Image->imageable_id = $students->id;
+                    $Image->imageable_type = 'App\Models\Student';
                     $Image->save();
 
                 } 

@@ -17,12 +17,13 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        User::updateOrCreate([
+        User::create([
 
                 'email' => 'root@root.com',
                 'name' => 'root',
                 'password' => Hash::make('root'),
                 'email_verified_at' => now(),
+                'created_at' => now(),
         ]
             
         );

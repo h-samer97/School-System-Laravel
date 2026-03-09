@@ -22,10 +22,6 @@ class StudentGraduatedRepository implements IStudentGraduated
 
         $Students->delete();
 
-        // foreach($Students as $Student) {
-        //     Student::where('id', $request->id)->delete();
-        // }
-
         toastr()->success(trans('messages.success'));
         return redirect()->route('studentGraduated.index');
 

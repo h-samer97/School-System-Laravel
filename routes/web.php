@@ -28,14 +28,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('dashboard');
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-], function() {
+    ], function() {
+    Route::get('/', function () {
+        return view('auth.login');
+    })->middleware('guest');
 
     Route::middleware(['auth', 'verified'])->group(function () {
         

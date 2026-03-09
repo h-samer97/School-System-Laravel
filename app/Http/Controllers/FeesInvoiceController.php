@@ -36,23 +36,23 @@ protected IFeesInvoices $f_invoices;
    
     public function show($id)
     {
-        $this->f_invoices->show($id);
+        return $this->f_invoices->show($id);
     }
 
     
-    public function edit(FeesInvoice $feesInvoice)
+    public function edit($id)
     {
-        //
+        return $this->f_invoices->edit($id);
     }
 
     
-    public function update(Request $request, FeesInvoice $feesInvoice)
+    public function update(Request $request)
     {
-        //
+        return $this->f_invoices->update($request);
     }
 
-    public function destroy(FeesInvoice $feesInvoice)
+    public function destroy(Request $request)
     {
-        //
+       return $this->f_invoices->destroy($request);
     }
 }

@@ -56,7 +56,7 @@ class ReceiptStudentsRepository implements IReceiptStudents {
             $receipt_students = ReceiptStudents::findorfail($request->id);
             $receipt_students->date = date('Y-m-d');
             $receipt_students->student_id = $request->student_id;
-            $receipt_students->Debit = $request->Debit;
+            $receipt_students->amount = $request->Debit;
             $receipt_students->description = $request->description;
             $receipt_students->save();
 
@@ -68,15 +68,15 @@ class ReceiptStudentsRepository implements IReceiptStudents {
             $fund_accounts->description = $request->description;
             $fund_accounts->save();
 
-            $fund_accounts = StudentsAccounts::where('receipt_id',$request->id)->first();
-            $fund_accounts->date = date('Y-m-d');
-            $fund_accounts->type = 'receipt';
-            $fund_accounts->student_id = $request->student_id;
-            $fund_accounts->receipt_id = $receipt_students->id;
-            $fund_accounts->Debit = 0.00;
-            $fund_accounts->credit = $request->Debit;
-            $fund_accounts->description = $request->description;
-            $fund_accounts->save();
+            $student_account = StudentsAccounts::where('receipt_id',$request->id)->first();
+            $student_account->date = date('Y-m-d');
+            $student_account->type = 'receipt';
+            $student_account->student_id = $request->student_id;
+            $student_account->receipt_id = $receipt_students->id;
+            $student_account->Debit = 0.00;
+            $student_account->credit = $request->Debit;
+            $student_account->description = $request->description;
+            $student_account->save();
 
 
             DB::commit();

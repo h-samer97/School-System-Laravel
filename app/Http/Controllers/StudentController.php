@@ -62,6 +62,9 @@ class StudentController extends Controller
     {
         return $this->student->Download_attachment($studentsname,$filename);
     }
+    public function Delete_attachment(Request $request) {
+        return $this->student->Delete_attachment($request);
+    }
 
     
     

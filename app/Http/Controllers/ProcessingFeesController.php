@@ -3,63 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProcessingFees;
+use App\Repository\IProcessingFees;
 use Illuminate\Http\Request;
 
 class ProcessingFeesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    protected IProcessingFees $processingFees;
+
+    public function __construct(IProcessingFees $processingFees) {
+        $this->processingFees = $processingFees;
+    }
+   
     public function index()
     {
-        //
+        return $this->processingFees->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        return $this->processingFees->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProcessingFees $processingFees)
+    
+    public function show($id)
     {
-        //
+        return $this->processingFees->show($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProcessingFees $processingFees)
+    
+    public function edit($id)
     {
-        //
+        return $this->processingFees->edit($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProcessingFees $processingFees)
+    public function update(Request $request)
     {
-        //
+        return $this->processingFees->update($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProcessingFees $processingFees)
+    public function destroy($id)
     {
-        //
+        return $this->processingFees->destroy($id);
     }
 }

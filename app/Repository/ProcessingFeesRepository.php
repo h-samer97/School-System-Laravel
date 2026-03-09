@@ -32,7 +32,7 @@ class ProcessingFeesRepository implements IProcessingFees {
         DB::beginTransaction();
 
         try {
-            // حفظ البيانات في جدول معالجة الرسوم
+            
             $ProcessingFee = new ProcessingFees();
             $ProcessingFee->date = date('Y-m-d');
             $ProcessingFee->student_id = $request->student_id;
@@ -40,8 +40,6 @@ class ProcessingFeesRepository implements IProcessingFees {
             $ProcessingFee->description = $request->description;
             $ProcessingFee->save();
 
-
-            // حفظ البيانات في جدول حساب الطلاب
             $students_accounts = new StudentsAccounts();
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'ProcessingFee';
@@ -56,6 +54,7 @@ class ProcessingFeesRepository implements IProcessingFees {
             DB::commit();
             toastr()->success(trans('messages.success'));
             return redirect()->route('ProcessingFee.index');
+            
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -76,7 +75,7 @@ class ProcessingFeesRepository implements IProcessingFees {
             $ProcessingFee->save();
 
             // تعديل البيانات في جدول حساب الطلاب
-            $students_accounts = StudentsAccounts::where('processing_id',$request->id)->first();;
+            $students_accounts = StudentsAccounts::where('processing_id',$request->id)->first();
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'ProcessingFee';
             $students_accounts->student_id = $request->student_id;
