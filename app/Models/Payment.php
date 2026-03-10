@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     protected $guarded = [];
-    protected $table   = 'payments'; 
+    protected $table   = 'payment_students'; 
 
     public function student()
     {

@@ -15,9 +15,7 @@ class SettingController extends Controller
     
     $setting = Setting::pluck('value', 'key')->all();
 
-    return $setting;
-
-    // return view('setting.index', compact('setting'));
+    return view('setting.index', compact('setting'));
 }
 
     public function update(Request $request){

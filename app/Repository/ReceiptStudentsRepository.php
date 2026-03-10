@@ -39,7 +39,7 @@ class ReceiptStudentsRepository implements IReceiptStudents {
         try {
             ReceiptStudents::destroy($request->id);
             toastr()->error(trans('messages.Delete'));
-            return redirect()->back();
+            return redirect()->route('receipt_students.index');
         }
 
         catch (Exception $e) {

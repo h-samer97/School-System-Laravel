@@ -12,10 +12,12 @@ use App\Models\Teachers;
 class AttendanceRepository implements IAttendance {
     public function index()
     {
-        $Grades = Grade::with(['Sections'])->get();
-        $list_Grades = Grade::all();
-        $teachers = Teachers::all();
-        return view('pages.Attendance.Sections',compact('Grades','list_Grades','teachers'));
+        $Grades         = Grade::with(['Sections'])->get();
+        $list_Grades    = Grade::all();
+        $teachers       = Teachers::all();
+        $students       = Student::all();
+        // return dd()
+        return view('Attendance.Sections',compact('Grades','list_Grades','teachers', 'students'));
     }
 
     public function show($id)
@@ -41,7 +43,7 @@ class AttendanceRepository implements IAttendance {
                     'grade_id'=> $request->grade_id,
                     'classroom_id'=> $request->classroom_id,
                     'section_id'=> $request->section_id,
-                    'teacher_id'=> 1,
+                    'teacher_id'=> Teachers::first()->id ?? 2, # تجريبي
                     'attendence_date'=> date('Y-m-d'),
                     'attendence_status'=> $attendence_status
                 ]);
@@ -58,10 +60,41 @@ class AttendanceRepository implements IAttendance {
         }
     }
 
-    public function update($request)
-    {
-        // TODO: Implement update() method.
+       public function update($request)
+        {
+            try {
+                if (!isset($request->attendences) || !is_array($request->attendences)) {
+                    toastr()->error('لا توجد بيانات لتحديثها');
+                    return redirect()->back();
+                }
+
+                foreach ($request->attendences as $studentid => $attendence) {
+
+                    $status = ($attendence == 'presence');
+
+                    Attendance::updateOrCreate(
+                        [
+                            'student_id'      => $studentid,
+                            'attendence_date' => date('Y-m-d'),
+                        ],
+                        [
+                            'grade_id'         => $request->grade_id,
+                            'classroom_id'     => $request->classroom_id,
+                            'section_id'       => $request->section_id,
+                            'teacher_id'       => Teachers::first()->id ?? 2, # تجريبي
+                            'attendence_status'=> $status,
+                        ]
+                    );
+                }
+
+                toastr()->success(trans('messages.Update'));
+                return redirect()->back();
+
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            }
     }
+
 
     public function destroy($request)
     {

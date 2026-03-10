@@ -2,6 +2,7 @@
 
     namespace App\Repository;
 
+    use App\Models\Classroom;
     use App\Models\Fees;
     use App\Models\Grade;
     use Exception;
@@ -54,27 +55,28 @@
     {
         try {
             $fees = Fees::findorfail($request->id);
-            $fees->title = ['en' => $request->title_en, 'ar' => $request->title_ar];
-            $fees->amount  =$request->amount;
-            $fees->Grade_id  =$request->Grade_id;
-            $fees->Classroom_id  =$request->Classroom_id;
-            $fees->description  =$request->description;
-            $fees->year  =$request->year;
-            $fees->Fee_type  =$request->Fee_type;
+            $fees->title        = ['en' => $request->title_en, 'ar' => $request->title_ar];
+            $fees->amount       = $request->amount;
+            $fees->grade_id     = $request->Grade_id;
+            $fees->classroom_id  =  $request->Classroom_id;
+            $fees->description  = $request->description;
+            $fees->year         = $request->year;
+            // $fees->fee_type     = $request->Fee_type;
             $fees->save();
             toastr()->success(trans('messages.Update'));
             return redirect()->route('Fees.index');
         }
 
-        catch (Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        catch (Exception $error) {
+            return redirect()->back()->withErrors(['error' => $error->getMessage()]);
         }
     }
 
      public function create(){
 
         $Grades = Grade::all();
-        return view('Fees.add',compact('Grades'));
+        $Classrooms = Classroom::all();
+        return view('Fees.add',compact('Grades', 'Classrooms'));
     }
 
     public function destroy($request) {

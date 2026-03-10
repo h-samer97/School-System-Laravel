@@ -1,4 +1,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    .content-wrapper, .main-content, .page-wrapper {
+        margin-left: 250px !important;
+        width: calc(100% - 250px) !important;
+        transition: all 0.3s ease-in-out !important;
+    }
+
+    body.slide-menu .content-wrapper, 
+    body.slide-menu .main-content, 
+    body.slide-menu .page-wrapper {
+        margin-left: 70px !important;
+        width: calc(100% - 70px) !important;
+    }
+    .side-menu-fixed {
+        transition: all 0.3s ease-in-out !important;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="side-menu-fixed">
@@ -103,7 +120,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Attendance-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="#">قائمة الحضور والغياب</a> </li>
+                            <li> <a href="{{ route('Attendance.index') }}">قائمة الحضور والغياب</a> </li>
                         </ul>
                     </li>
 

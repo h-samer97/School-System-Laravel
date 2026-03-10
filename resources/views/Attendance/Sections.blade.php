@@ -17,10 +17,6 @@
     <div class="row">
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
-                <div class="card-body">
-                    <a class="button x-small" href="#" data-toggle="modal" data-target="#exampleModal">
-                        {{ trans('Sections_trans.add_section') }}</a>
-                </div>
 
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -71,8 +67,8 @@
                                                                     <tr>
                                                                         <?php $i++; ?>
                                                                         <td>{{ $i }}</td>
-                                                                        <td>{{ $list_Sections->Name_Section }}</td>
-                                                                        <td>{{ $list_Sections->My_classs->Name_Class }}</td>
+                                                                        <td>{{ $list_Sections->name_section }}</td>
+                                                                        <td>{{ $list_Sections->My_classs->name_class }}</td>
                                                                         <td>
                                                                             <label class="badge badge-{{$list_Sections->Status == 1 ? 'success':'danger'}}">{{$list_Sections->Status == 1 ? 'نشط':'غير نشط'}}</label>
                                                                         </td>

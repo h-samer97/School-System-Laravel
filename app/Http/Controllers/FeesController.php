@@ -22,12 +22,16 @@ class FeesController extends Controller
        return $this->fees->create();
     }
 
-    public function update($id) {
-       return $this->fees->update($id);
+    public function edit($id) {
+      return $this->fees->edit($id);
     }
 
-    public function destroy($id) {
-       return $this->fees->destroy($id);
+    public function update(Request $request) {
+       return $this->fees->update($request);
+    }
+
+    public function destroy(Request $request) {
+       return $this->fees->destroy($request);
     }
 
     public function store(StoreFeesRequest $request) {

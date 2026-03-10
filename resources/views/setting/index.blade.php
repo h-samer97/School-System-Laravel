@@ -78,13 +78,13 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label font-weight-semibold">نهاية الترم الاول </label>
                                 <div class="col-lg-9">
-                                    <input name="end_first_term" value="{{ $setting['end_first_term'] }}" type="text" class="form-control date-pick" placeholder="Date Term Ends">
+                                    <input name="end_first_term" value="{{ $setting['end_first_term'] ?? '' }}" type="text" class="form-control date-pick">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label font-weight-semibold">نهاية الترم الثاني</label>
                                 <div class="col-lg-9">
-                                    <input name="end_second_term" value="{{ $setting['end_second_term'] }}" type="text" class="form-control date-pick" placeholder="Date Term Ends">
+                                    <input name="end_second_term" value="{{ $setting['end_second_term'] ?? '' }}" type="text" class="form-control date-pick">
                                 </div>
                             </div>
 

@@ -10,7 +10,6 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\PromotionsController;
 use App\Http\Controllers\GraduatedController;
 use App\Http\Controllers\FeesController;
@@ -19,10 +18,6 @@ use App\Http\Controllers\StudentsAccountsController;
 use App\Http\Controllers\ReceiptStudentsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\ExamController; 
-use App\Http\Controllers\QuizzController;
-use App\Http\Controllers\QuestionController;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -80,14 +75,6 @@ Route::group([
         Route::resource('Payment_students', PaymentController::class);
         Route::resource('ProcessingFee', ProcessingFeesController::class);
         Route::resource('Attendance', AttendanceController::class);
-        Route::resource('subjects', SubjectController::class);
-
-        Route::resource('Exams', ExamController::class);
-        Route::resource('Quizzes', QuizzController::class);
-        Route::resource('questions', QuestionController::class);
-
-        Route::get('download_file/{filename}', [LibraryController::class, 'downloadAttachment'])->name('downloadAttachment');
-        Route::resource('library', LibraryController::class);
         Route::resource('settings', SettingController::class);
         
         // Parent

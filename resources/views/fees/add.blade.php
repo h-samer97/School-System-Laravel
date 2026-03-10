@@ -65,7 +65,9 @@
                             <div class="form-group col">
                                 <label for="inputZip">الصف الدراسي</label>
                                 <select class="custom-select mr-sm-2" name="Classroom_id">
-
+                                    @foreach ($Classrooms as $class)
+                                        <option value="{{ $class->id }}">{{ $class->name_class }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col">

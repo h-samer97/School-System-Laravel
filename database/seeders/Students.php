@@ -21,7 +21,7 @@ class Students extends Seeder
                 'name' => ['en' => 'Samer Hajara', 'ar' => 'سامر حجارة'],
                 'email' => 'samer@example.com',
                 'password' => Hash::make('12345678'),
-                'gender_id' => 1,
+                'gender_id' => 2,
                 'nationalitie_id' => 1,
                 'blood_id' => 1,
                 'date_birth' => '2005-01-01',

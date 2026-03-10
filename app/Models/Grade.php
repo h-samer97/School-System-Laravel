@@ -10,13 +10,13 @@ class Grade extends Model
 {
 
     use HasTranslations;
-    protected $table = 'Grades';
+    protected $table = 'grades';
     protected $translatable = ['Name', 'Notes'];
     protected $fillable = ['Name', 'Notes'];
     public $timestamps = true;
 
     public function Sections() {
-        return $this->hasMany('App\Models\Section', 'grade_id');
+        return $this->hasMany(Section::class, 'grade_id');
     }
     
 

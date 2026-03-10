@@ -11,7 +11,12 @@ class SParent extends Model
 {
     use HasTranslations, Notifiable;
 
-    public $translatable = ['name_Father', 'job_father', 'name_mother', 'job_mother'];
+    public $translatable = [
+    'name_Father',
+    'job_father',
+    'name_mother', 
+    'job_mother'
+];
     
     protected $table = 's_parent';
     
